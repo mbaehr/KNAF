@@ -46,7 +46,7 @@ Or break it up:
 
 Or run a keeper by hand:
 # interface verify eth0 dhcp_enabled true
-# process enforce mycooldaemon running false
+# process enforce mycooldaemon is_running false
 
 A keeper is simply a script that takes as:
 - ARG0: the promise type
