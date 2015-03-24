@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+# Basic dispatcher for KNAF
+#
+# (C) 2015 Mike Baehr
+#
+# This is free software: see COPYING for terms/conditions
+
+while IFS=':' read -a promise; do
+  type=${promise[0]%_*}
+  promiser=${promise[0]##*_}
+  constraint=${promise[1]}
+  value=${promise[2]}
+  action=$1
+  case $action in
+    verify|enforce)
+      echo $PROMISEPATH$type $action $promiser $constraint $value
+      ;;
+    *)
+      exit 1
+      ;;
+  esac
+done
+

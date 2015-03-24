@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+# KNAF itself
+#
+# (C) 2015 Mike Baehr
+#
+# This is free software: see COPYING for terms/conditions
+
+export PATH=`pwd`/bin:$PATH
+export PROMISEPATH=`pwd`/promises/
+
+
+knaf() {
+  action=$1
+  case $action in
+    facts)
+      facter
+      ;;
+    verify|enforce)
+      facter | decider | dispatcher $action | sh
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}

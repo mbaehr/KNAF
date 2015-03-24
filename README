@@ -1,0 +1,62 @@
+KNAF stands for "KNAF's no Automation Framework"
+
+Use it to help:
+- determine the desired state for your system
+- determine what state your system is actually in
+- determine what is necessary in order to fix your system
+
+It is a primitive promise engine inspired by CFEngine 3.
+
+By itself KNAF knows and does nothing. You write the
+actual commands to do these things, and KNAF provides the glue.
+
+The basic unit of KNAF is a promise:
+
+  PROMISER:CONSTRAINT:VALUE
+
+better expressed as:
+
+  THING YOU CARE ABOUT:ASPECT OF THING:DESIRED STATE FOR ASPECT
+
+think:
+
+  file_/etc/passwd:mode:644
+  process_mycooldaemon:is_running:false
+  interface_eth0:dhcp_enabled:true
+
+The following components comprise KNAF:
+
+- facter: perform discovery
+- decider: decide what to care about
+- dispatcher: issue commands to invoke whoever's responsible for it
+- keeper: actually verify and enforce
+
+Each is its own tool, for easier debugging and development.
+
+To run knaf, first source knafenv:
+
+# . bin/knafenv
+
+You can then run the whole thing like so:
+
+# knaf [verify|enforce]
+
+Or break it up:
+# facter | decider | dispatcher [verify|enforce] | sh
+
+Or run a keeper by hand:
+# interface verify eth0 dhcp_enabled true
+# process enforce mycooldaemon running false
+
+A keeper is simply a script that takes as:
+- ARG0: the promise type
+- ARG1: the action (verify/enforce)
+- ARG2: the promiser
+- ARG3: the constraint
+- ARG4: the value
+
+And returns 0 if successful and 1 if not.
+
+There should never be a mystery about what's being tried.
+That can be a real hassle with more advanced systems, but
+KNAF is not advanced - so enjoy.
