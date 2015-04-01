@@ -1,0 +1,4 @@
+Example promise library for managing basic aspects
+of a UNIX-like system.
+
+Initial version guarantees file modes on Darwin and GNU/Linux.
