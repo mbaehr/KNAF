@@ -39,14 +39,14 @@ To run knaf, first source knafenv:
 
 You can then run the whole thing like so:
 
-# knaf [verify|enforce]
+# knaf [verify|enforce] [report]
 
 Or break it up:
-# facter | decider | dispatcher [verify|enforce] | sh
+# facter | decider | dispatcher [verify|enforce] [report] | sh
 
 Or run a keeper by hand:
-# interface verify eth0 dhcp_enabled true
-# process enforce mycooldaemon is_running false
+# /path/to/interface verify eth0 dhcp_enabled true
+# /path/to/process enforce mycooldaemon is_running false
 
 A keeper is simply a script that takes as:
 - ARG0: the promise type
@@ -56,6 +56,12 @@ A keeper is simply a script that takes as:
 - ARG4: the value
 
 And returns 0 if successful and 1 if not.
+
+If the optional "report" argument is passed to the dispatcher,
+the resulting shell will output a line corresponding to each 
+promise, with an additional field stating whether the promise
+has been "kept" or has "failed". This output can be fed into
+whatever you like.
 
 There should never be a mystery about what's being tried.
 That can be a real hassle with more advanced systems, but
