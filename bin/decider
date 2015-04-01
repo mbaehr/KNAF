@@ -13,7 +13,7 @@ done
 
 # Make parsed facts available by sourcing
 if [ -n "$DECISIONS" ]; then
-  find $DECISIONS -maxdepth 1 -type f | sort | while read DECISION; do
+  find $DECISIONS -maxdepth 1 ! -type d | sort | while read DECISION; do
     ( . $DECISION )
   done
 fi

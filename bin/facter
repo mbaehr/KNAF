@@ -7,7 +7,7 @@
 # This is free software: see COPYING for terms/conditions
 
 if [ -n "$FACTS" ]; then
-  find $FACTS -maxdepth 1 -type f | sort | while read FACT; do
+  find $FACTS -maxdepth 1 ! -type d | sort | while read FACT; do
     ./$FACT
   done
 fi
