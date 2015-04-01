@@ -1,17 +1,12 @@
 #!/bin/bash
 #
-# Basic decider for KNAF
+# Example OS decider for KNAF
 #
 # (C) 2015 Mike Baehr
 #
 # This is free software: see COPYING for terms/conditions
 
-# Parse each fact as an assignment
-while IFS=':' read -a fact; do
-  eval ${fact[0]}\=${fact[1]}
-done
-
 # Example: promise 0000 mode for /etc/shadow on Linux systems
-[ "$os" = "Linux" ] && echo "file_etc/shadow:mode:000"
+[ "$fact_os" = "Linux" ] && echo "linuxfile_etc/shadow:mode:000"
 # Example: promise 0600 mode for /etc/master.passwd on Mac systems
-[ "$os" = "Darwin" ] && echo "file_etc/master.passwd:mode:600"
+[ "$fact_os" = "Darwin" ] && echo "darwinfile_etc/master.passwd:mode:600"

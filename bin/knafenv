@@ -7,17 +7,17 @@
 # This is free software: see COPYING for terms/conditions
 
 export PATH=`pwd`/bin:$PATH
-export PROMISEPATH=`pwd`/promises/
+export PROMISES=`pwd`/promises/
+export FACTS=`pwd`/facts/
+export DECISIONS=`pwd`/decisions/
 
 
 knaf() {
   action=$1
+  addendum=$2
   case $action in
-    facts)
-      facter
-      ;;
     verify|enforce)
-      facter | decider | dispatcher $action | sh
+      facter | decider | dispatcher $action $addendum | sh
       ;;
     *)
       return 1

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Basic facter for KNAF
+# Example OS/HW facter for KNAF
 #
 # (C) 2015 Mike Baehr
 #

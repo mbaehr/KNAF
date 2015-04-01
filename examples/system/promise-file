@@ -13,20 +13,13 @@ value=$4
 
 [ -e "$file" ] || exit 1
 
-# Should probably make this happen
-# automatically by sourcing facter
-
-while IFS=':' read -a fact; do
-  eval ${fact[0]}\=${fact[1]}
-done < <(facter)
-
 case $trait in
   mode)
-    case $os in
-      Linux)
+    case $0 in
+      *linuxfile)
         mode=`stat -c %a "$file"`
         ;;
-      Darwin)
+      *darwinfile)
         mode=`stat -f %Op "$file"|cut -c 4-`
         ;;
       *)
@@ -41,7 +34,7 @@ case $trait in
           false
           ;;
         enforce)
-          chmod $value "$file" && true || false
+          chmod $value "$file"
           ;;
       esac
     fi

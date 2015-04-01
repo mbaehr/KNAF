@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+# Basic facter for KNAF
+#
+# (C) 2015 Mike Baehr
+#
+# This is free software: see COPYING for terms/conditions
+
+if [ -n "$FACTS" ]; then
+  ls -1 $(find $FACTS -maxdepth 1 -type f) | while read FACT; do
+    ./$FACT
+  done
+fi
