@@ -1,0 +1,28 @@
+KNAF exists because I'm starting to feel a Sophie's Choice, between:
+- doing things automatably, predictably, and verifiably, 
+  BUT only by working within large, over-engineered systems that
+  must be debugged or extended by a software developer
+- do things by hand and know exactly what you're doing, but
+  be prone to errors and omissions, and not be able to verify
+  your work
+
+This is killing the systems administration discipline.
+
+KNAF is an alternative, written in shell, that provides the bare
+minimum of glue around which you can write scripts that will
+verify, repair, and report on a system's state.
+
+With KNAF I can work within the environment with which I'm
+most comfortable (and closest to the system) without
+having to be a total cowboy about it.
+
+Use KNAF alongside more advanced systems (like CFEngine 3),
+or in parts of a machine's lifecycle where your automation
+framework can't quite reach.
+
+Write system patches with it.
+Write rescue systems with it.
+Write whatever you want with it You barely need to understand
+anything about it in order to use it. That's the point.
+
+YOU'RE WELCOME

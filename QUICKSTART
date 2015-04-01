@@ -1,0 +1,50 @@
+To try KNAF, make the following symlinks:
+
+facts/01system -> examples/system/facts
+decisions/01system -> examples/system/decisions
+promises/darwinfile -> examples/system/promise-file
+promises/linuxfile -> examples/system/promise-file
+
+Now run:
+
+$ . bin/knafenv
+
+Then run:
+
+$ facter
+
+Note the format of its output. This can be saved,
+or replayed, however you'd like. It is a snapshot
+of the "facts" known about the system at a particular
+point.
+
+Then run: 
+
+$ facter | decider
+
+Note that you are now seeing "promises" in the output.
+Each of these promises is a fully-qualified statement
+of what should be verified/enforced about the system.
+Absent any additional data (such as the facts in the
+previous step), any one of these promises should be
+sufficient to express your intent.
+
+Now run:
+
+$ facter | decider | dispatcher enforce
+and
+$ facter | decider | dispatcher enforce report
+
+Note that you're just getting a bunch of shell. In
+the first version, your promises are run. Simple.
+In the second version, the promise invocation is wrapped
+and a statement of whether the promise has been "kept"
+or "failed" is conditionally output. This could be fed
+into a reporting system, or an email, or whatever.
+
+Finally run:
+
+$ facter | decider | dispatcher enforce report | sh
+(also known as 'knaf enforce report')
+
+And bear witness to the magic of KNAF.

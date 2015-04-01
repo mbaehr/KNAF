@@ -1,0 +1,14 @@
+KNAF has no API. Extending it is as simple as writing more
+shell scripts to do what you want. Taking a look at the ones under
+examples/system should be sufficient to give you an idea of
+what input they need to be able to parse/what arguments they should
+accept.
+
+There is no dependency resolution present in KNAF, nor is there
+a built-in ability to perform more than one pass. It is assumed that
+you will implement these things yourself by wrapping it.
+
+For primitive ordering/dependency, KNAF does execute scripts in
+facts/ and decisions/ in alphanumeric order, so you can put more
+fundamental stuff earlier. The full body of 'facts' will be fed
+to each 'decision'. That's more informed than your typical jury.
