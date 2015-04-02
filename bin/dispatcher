@@ -6,26 +6,26 @@
 #
 # This is free software: see COPYING for terms/conditions
 
-if [ -n "$PROMISES" ]; then
+if [[ -n "${PROMISES}" ]]; then
   while IFS=':' read -a PROMISE; do
-    type=${PROMISE[0]%_*}
-    promiser=${PROMISE[0]##*_}
-    constraint=${PROMISE[1]}
-    value=${PROMISE[2]}
-    action=$1
-    addendum=$2
-    case $action in
+    type="${PROMISE[0]%_*}"
+    promiser="${PROMISE[0]##*_}"
+    constraint="${PROMISE[1]}"
+    value="${PROMISE[2]}"
+    action="$1"
+    addendum="$2"
+    case "${action}" in
       verify|enforce)
-        if [ "$addendum" = "report" ]; then
-          cat<<END_INVOCATION
-if $PROMISES$type $action $promiser $constraint $value >/dev/null; then
-  echo $PROMISE:kept
-else
-  echo $PROMISE:failed
-fi
-END_INVOCATION
+        if [[ "${addendum}" == "report" ]]; then
+          cat <<- END_INVOCATION
+            if "${PROMISES}${type}" "${action}" "${promiser}" "${constraint}" "${value}" >/dev/null; then
+              echo "${PROMISE}":kept
+            else
+              echo "${PROMISE}":failed
+            fi
+          END_INVOCATION
         else
-          echo $PROMISES$type $action $promiser $constraint $value
+          echo "${PROMISES}${type}" "${action}" "${promiser}" "${constraint}" "${value}"
         fi
         ;;
       *)

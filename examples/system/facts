@@ -8,10 +8,10 @@
 
 echo -n hostname: ; hostname
 echo -n os: ; uname
-if [ -x /usr/sbin/dmidecode ]; then
+if [[ -x /usr/sbin/dmidecode ]]; then
   echo -n "vendor:"
   /usr/sbin/dmidecode | awk \
-    '/Vendor/ {print $2}'
-elif [ -x /usr/sbin/system_profiler ]; then
+    '/Vendor/ { print $2 }'
+elif [[ -x /usr/sbin/system_profiler ]]; then
   echo "vendor:apple"
 fi
