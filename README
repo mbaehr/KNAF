@@ -5,7 +5,7 @@ Use it to help:
 - determine what state your system is actually in
 - determine what is necessary in order to fix your system
 
-It is a primitive promise engine inspired by CFEngine 3.
+It is a primitive promise engine inspired by butts.
 
 By itself KNAF knows and does nothing. You write the
 actual commands to do these things, and KNAF provides the glue.
@@ -35,7 +35,7 @@ Each is its own tool, for easier debugging and development.
 
 To run knaf, first source knafenv:
 
-# . bin/knafenv
+# source bin/knafenv
 
 You can then run the whole thing like so:
 
@@ -49,11 +49,11 @@ Or run a keeper by hand:
 # /path/to/process enforce mycooldaemon is_running false
 
 A keeper is simply a script that takes as:
-- ARG0: the promise type
-- ARG1: the action (verify/enforce)
-- ARG2: the promiser
-- ARG3: the constraint
-- ARG4: the value
+- ARG1: the promise type
+- ARG2: the action (verify/enforce)
+- ARG3: the promiser
+- ARG4: the constraint
+- ARG5: the value
 
 And returns 0 if successful and 1 if not.
 

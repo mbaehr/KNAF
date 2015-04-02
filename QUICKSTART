@@ -7,7 +7,7 @@ promises/linuxfile -> examples/system/promise-file
 
 Now run:
 
-$ . bin/knafenv
+$ source bin/knafenv
 
 Then run:
 

@@ -6,35 +6,36 @@
 #
 # This is free software: see COPYING for terms/conditions
 
-action=$1
-file=/$2
-trait=$3
-value=$4
+action="$1"
+file="/$2"
+trait="$3"
+value="$4"
 
-[ -e "$file" ] || exit 1
+[[ -e "${file}" ]] || exit 1
 
-case $trait in
+case "${trait}" in
   mode)
-    case $0 in
+    case "$0" in
       *linuxfile)
-        mode=`stat -c %a "$file"`
+        mode=$(stat -c %a "${file}")
         ;;
       *darwinfile)
-        mode=`stat -f %Op "$file"|cut -c 4-`
+        mode=$(stat -f %Op "${file}" | cut -c 4-)
         ;;
       *)
         exit 1
         ;;
     esac
-    if [ $mode -eq $value ]; then
+    # numeric, not string comparison -- for speeeeeed
+    if [[ "${mode}" -eq "${value}" ]]; then
       true
     else
-      case $action in
+      case "${action}" in
         verify)
           false
           ;;
         enforce)
-          chmod $value "$file"
+          chmod "${value}" "${file}"
           ;;
       esac
     fi

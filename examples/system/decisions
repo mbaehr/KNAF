@@ -7,6 +7,6 @@
 # This is free software: see COPYING for terms/conditions
 
 # Example: promise 0000 mode for /etc/shadow on Linux systems
-[ "$fact_os" = "Linux" ] && echo "linuxfile_etc/shadow:mode:000"
+[[ "${fact_os}" == 'Linux' ]] && echo "linuxfile_etc/shadow:mode:000"
 # Example: promise 0600 mode for /etc/master.passwd on Mac systems
-[ "$fact_os" = "Darwin" ] && echo "darwinfile_etc/master.passwd:mode:600"
+[[ "${fact_os}" == 'Darwin' ]] && echo "darwinfile_etc/master.passwd:mode:600"

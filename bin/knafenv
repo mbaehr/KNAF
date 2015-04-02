@@ -6,18 +6,20 @@
 #
 # This is free software: see COPYING for terms/conditions
 
-export PATH=`pwd`/bin:$PATH
-export PROMISES=`pwd`/promises/
-export FACTS=`pwd`/facts/
-export DECISIONS=`pwd`/decisions/
+export PATH="${PWD}/bin:${PATH}"
+export PROMISES="${PWD}/promises/"
+export FACTS="${PWD}/facts/"
+export DECISIONS="${PWD}/decisions/"
 
-
-knaf() {
-  action=$1
-  addendum=$2
-  case $action in
+function knaf() {
+  action="$1"
+  addendum="$2"
+  case "${action}" in
     verify|enforce)
-      facter | decider | dispatcher $action $addendum | sh
+      facter \
+      | decider \
+      | dispatcher "${action}" "${addendum}" \
+      | sh
       ;;
     *)
       return 1
